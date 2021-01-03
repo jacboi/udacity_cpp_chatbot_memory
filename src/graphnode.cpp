@@ -5,16 +5,8 @@ GraphNode::GraphNode(int id)
 {
     _id = id;
 }
-
-GraphNode::~GraphNode()
-{
-    //// STUDENT CODE
-    ////
-    // Should I just remove these when they're empty?
-
-    ////
-    //// EOF STUDENT CODE
-}
+// Should I just remove these when they're empty?
+GraphNode::~GraphNode(){}
 
 void GraphNode::AddToken(std::string token)
 {
