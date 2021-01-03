@@ -2,6 +2,7 @@
 #include <random>
 #include <algorithm>
 #include <ctime>
+#include <memory>
 
 #include "chatlogic.h"
 #include "graphnode.h"
@@ -30,6 +31,7 @@ ChatBot::ChatBot(std::string filename)
     _image = new wxBitmap(filename, wxBITMAP_TYPE_PNG);
 }
 
+// destructor
 ChatBot::~ChatBot()
 {
     std::cout << "ChatBot Destructor" << std::endl;
@@ -43,13 +45,64 @@ ChatBot::~ChatBot()
 }
 
 //// STUDENT CODE
-////
-// ChatBot::~ChatBot(const Chatbot &source)
-// {   
-//     _rootNode = source._rootNode;
-//     _chatLogic = source._chatLogic;
-//     *_image = *source._image;
-// }
+//// Task 2: rule of 5
+// copy
+ChatBot::ChatBot(const ChatBot &source)
+{      
+    std::cout<< "ChatBot Copy" << std::endl;
+    _currentNode = source._currentNode;
+    _rootNode = source._rootNode;
+    _chatLogic = source._chatLogic;
+    *_image = *source._image;
+}
+// assignment operator
+ChatBot& ChatBot::operator=(const ChatBot &source)
+{
+    std::cout<< "ChatBot Copy Assigment" << std::endl;
+
+    if(this == &source)
+        return *this;
+
+    _currentNode = source._currentNode;
+    _rootNode = source._rootNode;
+    _chatLogic = source._chatLogic;
+    *_image = *source._image;
+
+    return *this;
+}
+// move operator
+ChatBot::ChatBot(ChatBot &&source)
+{
+    std::cout<< "ChatBot Move" << std::endl;
+    _currentNode = source._currentNode;
+    _rootNode = source._rootNode;
+    _chatLogic = source._chatLogic;
+    *_image = *source._image;
+
+    source._currentNode = nullptr;
+    source._rootNode = nullptr;
+    source._chatLogic = nullptr;
+    source._image = nullptr;
+
+}
+
+// move assignemnt operator
+ChatBot& ChatBot::operator=(ChatBot &&source)
+{
+    std::cout<< "ChatBot Move Assignment" << std::endl;
+    _currentNode = source._currentNode;
+    _rootNode = source._rootNode;
+    _chatLogic = source._chatLogic;
+    *_image = *source._image;
+
+    source._currentNode = nullptr;
+    source._rootNode = nullptr;
+    source._chatLogic = nullptr;
+    source._image = nullptr;
+
+    return *this;
+
+}
 ////
 //// EOF STUDENT CODE
 
