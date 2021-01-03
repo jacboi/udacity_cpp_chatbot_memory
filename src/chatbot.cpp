@@ -44,7 +44,12 @@ ChatBot::~ChatBot()
 
 //// STUDENT CODE
 ////
-
+// ChatBot::~ChatBot(const Chatbot &source)
+// {   
+//     _rootNode = source._rootNode;
+//     _chatLogic = source._chatLogic;
+//     *_image = *source._image;
+// }
 ////
 //// EOF STUDENT CODE
 
